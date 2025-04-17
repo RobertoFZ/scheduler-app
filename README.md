@@ -10,7 +10,29 @@ A Flask application that allows you to schedule Facebook posts with text and opt
 - User-friendly interface with date and time picker
 - Responsive design for mobile and desktop
 - Containerized with Docker for easy deployment
-- PostgreSQL database for persistent storage
+- Modular code organization with Flask Blueprints
+
+## Project Structure
+
+```
+facebook_scheduler/
+├── app/                    # Application package
+│   ├── __init__.py         # Application factory
+│   ├── helpers/            # Helper modules
+│   │   ├── auth.py         # Authentication helpers 
+│   │   └── facebook.py     # Facebook API interaction
+│   ├── routes/             # Route modules
+│   │   ├── auth.py         # Authentication routes
+│   │   ├── main.py         # Main pages routes
+│   │   └── posts.py        # Post scheduling routes
+│   ├── static/             # Static assets
+│   ├── templates/          # HTML templates
+│   └── uploads/            # Temporary upload directory
+├── run.py                  # Application entry point
+├── Dockerfile              # Docker configuration
+├── docker-compose.yml      # Docker Compose configuration
+└── requirements.txt        # Python dependencies
+```
 
 ## Setup Options
 
@@ -19,9 +41,9 @@ A Flask application that allows you to schedule Facebook posts with text and opt
 1. Clone this repository
 2. Create a `.env` file based on `.env.example`:
    ```
-   APP_ID=your_facebook_app_id
-   APP_SECRET=your_facebook_app_secret
-   REDIRECT_URI=http://localhost:8000/callback
+   FACEBOOK_APP_ID=your_facebook_app_id
+   FACEBOOK_APP_SECRET=your_facebook_app_secret
+   FACEBOOK_REDIRECT_URI=http://localhost:8000/callback
    SECRET_KEY=your-secure-secret-key-for-sessions
    ```
 3. Start the application with Docker Compose:
@@ -40,7 +62,7 @@ A Flask application that allows you to schedule Facebook posts with text and opt
    ```
 4. Run the application:
    ```
-   python app.py
+   python run.py
    ```
 5. Open your browser and go to `http://localhost:8000`
 
@@ -87,6 +109,4 @@ For production deployment, consider:
 
 ## Note
 
-The application uses Flask-Session with filesystem storage to maintain session persistence. This makes sure your login remains valid between application restarts, solving issues where the app might ask you to log in again before the token expiration date.
-
-In a production environment, you should consider using Redis or a database backend for session storage instead of the filesystem for better performance and reliability. 
+The application uses Flask-Session with filesystem storage by default. In a production environment, you should consider using Redis or a database backend for session storage instead of the filesystem for better performance and reliability. 

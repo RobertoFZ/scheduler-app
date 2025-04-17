@@ -8,11 +8,14 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/facebook_scheduler
       - SECRET_KEY=${SECRET_KEY:-facebook-scheduler-secret-key}
-      - APP_ID=${APP_ID}
-      - APP_SECRET=${APP_SECRET}
-      - REDIRECT_URI=${REDIRECT_URI:-http://localhost:8000/callback}
+      - APP_ID=${FACEBOOK_APP_ID}
+      - APP_SECRET=${FACEBOOK_APP_SECRET}
+      - REDIRECT_URI=${FACEBOOK_REDIRECT_URI:-http://localhost:8000/callback}
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
     volumes:
       - ./uploads:/app/uploads
+      - ./:/app  # Mount the entire application directory
     depends_on:
       - db
     restart: unless-stopped
