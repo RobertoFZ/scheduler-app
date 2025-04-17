@@ -1,0 +1,64 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# Flask
+instance/
+.webassets-cache
+flask_session/
+
+# User uploaded content
+uploads/
+
+# Database
+*.sqlite
+*.db
+
+# Logs
+*.log
+
+# Docker (optional, these could be committed)
+#docker-compose.override.yml
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Sensitive settings
+.env
+
+# Local development specific
+.flaskenv 
