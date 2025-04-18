@@ -18,8 +18,11 @@ class ScheduledPost(db.Model):
     published = db.Column(db.Boolean, default=False)  # Whether post was published
     fb_post_id = db.Column(db.String(255), nullable=True)  # Facebook post ID after publishing
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    status = db.Column(db.String(50), default='scheduled')  # scheduled, published, failed
+    status = db.Column(db.String(50), default='scheduled')  # scheduled, published, failed, pending
     error_message = db.Column(db.Text, nullable=True)  # Error message if post failed
+    submitted_to_facebook = db.Column(db.Boolean, default=False)  # Whether the post has been submitted to Facebook
+    last_submission_attempt = db.Column(db.DateTime, nullable=True)  # Last time we tried to submit to Facebook
+    page_access_token = db.Column(db.Text, nullable=True)  # Stored page access token for scheduling
     
     def __repr__(self):
         return f'<ScheduledPost {self.id}: {self.page_name} @ {self.scheduled_time}>'
@@ -36,5 +39,6 @@ class ScheduledPost(db.Model):
             'published': self.published,
             'status': self.status,
             'created_at': self.created_at.isoformat(),
-            'fb_post_id': self.fb_post_id
+            'fb_post_id': self.fb_post_id,
+            'submitted_to_facebook': self.submitted_to_facebook
         } 

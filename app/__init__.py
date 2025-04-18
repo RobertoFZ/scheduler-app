@@ -2,7 +2,10 @@ import os
 from flask import Flask
 from flask_session import Session
 from app.models import db
+from flask_migrate import Migrate
 
+# Create migrate instance
+migrate = Migrate()
 
 def create_app(test_config=None):
     """Create and configure the Flask application"""
@@ -31,6 +34,9 @@ def create_app(test_config=None):
     
     # Initialize database
     db.init_app(app)
+    
+    # Initialize Flask-Migrate
+    migrate.init_app(app, db)
     
     # Register blueprints
     from app.routes.main import main_bp

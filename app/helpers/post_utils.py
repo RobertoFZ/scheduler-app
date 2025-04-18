@@ -1,30 +1,16 @@
-from datetime import datetime
-from app.models import db
-from app.models.scheduled_post import ScheduledPost
+from app.helpers.scheduler import update_post_statuses as update_statuses
+from app.helpers.scheduler import check_and_schedule_pending_posts
 
 
 def update_post_statuses():
     """
-    Update the status of scheduled posts based on their scheduled time.
-    Posts with scheduled_time in the past should be marked as 'published'
-    if they have a valid fb_post_id.
+    Update the status of scheduled posts based on their scheduled time and
+    check for posts to schedule within Facebook's limit.
     """
-    now = datetime.utcnow()
+    # Update statuses of existing posts
+    updated_count = update_statuses()
     
-    # Get all scheduled posts with scheduled_time in the past
-    posts_to_update = ScheduledPost.query.filter(
-        ScheduledPost.status == 'scheduled',
-        ScheduledPost.scheduled_time <= now
-    ).all()
+    # Check for pending posts that need to be scheduled
+    check_and_schedule_pending_posts()
     
-    updated_count = 0
-    for post in posts_to_update:
-        if post.fb_post_id:
-            post.status = 'published'
-            post.published = True
-            updated_count += 1
-    
-    if updated_count > 0:
-        db.session.commit()
-        
     return updated_count 

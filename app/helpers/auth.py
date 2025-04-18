@@ -49,9 +49,12 @@ def get_long_lived_token(short_lived_token):
 
 
 def get_user_info(access_token):
-    """Get the user information including user ID and name"""
+    """Get the user information including user ID, name, and email"""
     url = "https://graph.facebook.com/v19.0/me"
-    params = {"access_token": access_token}
+    params = {
+        "access_token": access_token,
+        "fields": "id,name,email"
+    }
     response = requests.get(url, params=params)
     response.raise_for_status()
     return response.json()

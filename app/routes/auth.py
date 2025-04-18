@@ -14,7 +14,7 @@ def login():
     """Redirect to Facebook OAuth page"""
     app_id = current_app.config['APP_ID']
     redirect_uri = current_app.config['REDIRECT_URI']
-    scope = "pages_manage_posts,pages_read_engagement,pages_show_list"
+    scope = "email,pages_manage_posts,pages_read_engagement,pages_show_list"
     print(f"App ID: {app_id}")
     print(f"Redirect URI: {redirect_uri}")
 
@@ -51,6 +51,10 @@ def callback():
         session['expires_at'] = token_data['expires_at']
         session['user_id'] = user_info['id']
         session['user_name'] = user_info.get('name', '')
+        
+        # Store email if available
+        if 'email' in user_info:
+            session['user_email'] = user_info['email']
         
         # Get pages user has access to
         pages = get_user_pages(access_token)
