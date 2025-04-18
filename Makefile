@@ -1,4 +1,15 @@
 .PHONY: up down logs migrations-init migrations-create migrations-upgrade migrations-downgrade scheduler-once scheduler-loop scheduler-loop-custom db-shell db-backup rebuild restart help
+COMPOSE := @docker compose -f docker-compose.yml
+
+# Docker commands
+run:
+	docker run --env-file .env -p 8082:8082 --name facebook-scheduler --restart=always -d facebook-scheduler
+
+build:
+	docker build -t facebook-scheduler .
+
+command:
+	$(COMPOSE) run --rm web python manage.py $(ARG)
 
 # Docker compose commands
 up:

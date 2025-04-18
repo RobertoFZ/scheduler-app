@@ -109,4 +109,74 @@ For production deployment, consider:
 
 ## Note
 
-The application uses Flask-Session with filesystem storage by default. In a production environment, you should consider using Redis or a database backend for session storage instead of the filesystem for better performance and reliability. 
+The application uses Flask-Session with filesystem storage by default. In a production environment, you should consider using Redis or a database backend for session storage instead of the filesystem for better performance and reliability.
+
+## Deploying to Render.com
+
+This application is configured for easy deployment on Render.com using the provided `render.yaml` blueprint file.
+
+### Deployment Services
+
+The application consists of two main services:
+
+1. **Web Service**: The main Flask application that handles user requests, authentication, and UI
+2. **Scheduler (Cron Job)**: A scheduled task that runs every hour to process pending posts
+
+Both services use the free tier on Render.com.
+
+### Deployment Steps
+
+1. Fork or push this repository to GitHub.
+
+2. Create a new Render.com account or sign in to your existing account.
+
+3. On your Render dashboard, click "New" and select "Blueprint".
+
+4. Connect your GitHub account and select this repository.
+
+5. Configure the required environment variables:
+   - `DATABASE_URL` - Connection string for your PostgreSQL database
+   - `FACEBOOK_APP_ID` - Your Facebook App ID
+   - `FACEBOOK_APP_SECRET` - Your Facebook App Secret
+   - `FACEBOOK_REDIRECT_URI` - The callback URL (e.g., https://your-app.onrender.com/callback)
+
+6. Click "Apply" to deploy the application.
+
+### Important Considerations
+
+#### Scheduler Frequency
+
+The scheduler is configured to run as a cron job every hour (`0 * * * *`). This means:
+- It will check for posts to schedule once per hour
+- It will only run for a short time and then exit (not a continuous process)
+- This approach is compatible with Render's free tier
+
+If you need a different frequency, you can modify the `schedule` parameter in the `render.yaml` file. For example:
+- Every 30 minutes: `*/30 * * * *`
+- Every 15 minutes: `*/15 * * * *`
+- Twice per hour: `0,30 * * * *`
+
+#### File Storage
+
+Render.com uses ephemeral file storage, which means any files uploaded to the container (like post images) will be lost when the service restarts or when a new deployment occurs. 
+
+For production use, consider these options:
+
+1. **Render Disk** (paid feature): Attach a persistent disk to your service
+   - Update the Dockerfile to use this mounted directory for uploads
+
+2. **Cloud Storage Solution**: Modify the application to use a cloud storage provider
+   - AWS S3
+   - Google Cloud Storage
+   - Azure Blob Storage
+
+#### External Database
+
+For the free tier deployment, you'll need to use an external PostgreSQL database as Render's managed database service doesn't have a free tier. Some options include:
+- [Supabase](https://supabase.com/) (free tier available)
+- [Neon](https://neon.tech/) (free tier available)
+- [ElephantSQL](https://www.elephantsql.com/) (free tier available)
+
+#### Environment Variables
+
+All necessary environment variables are specified in the `render.yaml` file. Some variables are marked with `sync: false`, which means you'll need to set them manually in the Render dashboard after the initial deployment. 

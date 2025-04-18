@@ -1,0 +1,49 @@
+services:
+  # Web service
+  - type: web
+    name: facebook-scheduler-web
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: FACEBOOK_APP_ID
+        sync: false
+      - key: FACEBOOK_APP_SECRET
+        sync: false
+      - key: FACEBOOK_REDIRECT_URI
+        sync: false
+      - key: FB_SCHEDULING_DAYS
+        value: "30"
+      - key: FB_SCHEDULING_MINUTES
+        value: "10"
+
+  # Scheduler as a cron job (runs every hour)
+  - type: cron
+    name: facebook-scheduler-cron
+    runtime: docker
+    plan: starter
+    schedule: "0 * * * *"
+    dockerCommand: python scheduler.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: FACEBOOK_APP_ID
+        sync: false
+      - key: FACEBOOK_APP_SECRET
+        sync: false
+      - key: FACEBOOK_REDIRECT_URI
+        sync: false
+      - key: FB_SCHEDULING_DAYS
+        value: "30"
+      - key: FB_SCHEDULING_MINUTES
+        value: "10"
