@@ -47,6 +47,12 @@ def create_app(test_config=None):
     app.register_blueprint(auth_bp)
     app.register_blueprint(posts_bp, url_prefix='/posts')
     
+    # Add context processor for global template variables
+    @app.context_processor
+    def inject_now():
+        from datetime import datetime
+        return {'now': datetime.now()}
+    
     # Create database tables if they don't exist
     with app.app_context():
         db.create_all()

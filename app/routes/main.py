@@ -5,6 +5,7 @@ from flask import (
 from functools import wraps
 from app.helpers.post_utils import update_post_statuses
 from app.models.scheduled_post import ScheduledPost
+from datetime import datetime
 
 main_bp = Blueprint('main', __name__)
 
@@ -26,6 +27,27 @@ def index():
     print("DEBUG: Index route accessed - hot reload is working!")
     logged_in = 'access_token' in session
     return render_template('index.html', logged_in=logged_in)
+
+
+@main_bp.route('/privacy-policy')
+def privacy_policy():
+    """Privacy Policy page for Facebook app validation"""
+    now = datetime.now()
+    return render_template('privacy_policy.html', now=now)
+
+
+@main_bp.route('/terms-of-service')
+def terms_of_service():
+    """Terms of Service page for Facebook app validation"""
+    now = datetime.now()
+    return render_template('terms_of_service.html', now=now)
+
+
+@main_bp.route('/data-deletion')
+def data_deletion():
+    """Data Deletion Instructions page for Facebook app validation"""
+    now = datetime.now()
+    return render_template('data_deletion.html', now=now)
 
 
 @main_bp.route('/dashboard')
@@ -58,4 +80,17 @@ def dashboard():
         'dashboard.html',
         pages=pages,
         recent_posts=recent_posts
-    ) 
+    )
+
+
+@main_bp.route('/account-settings')
+@login_required
+def account_settings():
+    """Account settings page - requires login"""
+    # Ensure user_id is available
+    user_id = session.get('user_id')
+    if not user_id:
+        flash("Session incomplete. Please log out and log back in.", "error")
+        return redirect(url_for('auth.logout'))
+    
+    return render_template('account_settings.html') 

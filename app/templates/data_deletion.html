@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Data Deletion - Facebook Post Scheduler{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Data Deletion Instructions</h1>
+    
+    <div class="space-y-6 text-gray-700">
+        <p>Last Updated: {{ now.strftime('%B %d, %Y') }}</p>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Your Data Privacy Rights</h2>
+            <p>We respect your right to control your data. In accordance with Facebook's Platform Policy and applicable privacy laws, we provide you with ways to manage or delete your personal information.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Data We Store</h2>
+            <p>Our application stores the following data related to your use of Facebook Post Scheduler:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>Facebook User ID (provided by Facebook Login)</li>
+                <li>Access tokens for your Facebook Pages</li>
+                <li>Information about your scheduled posts</li>
+                <li>Any images you've uploaded for scheduled posts</li>
+                <li>Your email address (if you've provided permission)</li>
+            </ul>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Options for Data Deletion</h2>
+            
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
+                <h3 class="font-medium text-gray-800 mb-2">Option 1: Delete Your Data Through Facebook</h3>
+                <p class="mb-2">You can revoke our app's permissions directly through Facebook:</p>
+                <ol class="list-decimal pl-5 space-y-1">
+                    <li>Go to your Facebook Account's <a href="https://www.facebook.com/settings?tab=applications" target="_blank" class="text-blue-600 hover:underline">Settings &gt; Apps and Websites</a></li>
+                    <li>Find "Facebook Post Scheduler" in your list of connected apps</li>
+                    <li>Click "Remove" to revoke access and delete associated information</li>
+                </ol>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
+                <h3 class="font-medium text-gray-800 mb-2">Option 2: Contact Us Directly</h3>
+                <p class="mb-2">You can request data deletion by contacting us directly. Please include:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>The email address associated with your account</li>
+                    <li>Your Facebook User ID (if known)</li>
+                    <li>Subject line: "Data Deletion Request"</li>
+                </ul>
+                <p class="mt-2">Send your request to: <a href="mailto:[Your Contact Email]" class="text-blue-600 hover:underline">[Your Contact Email]</a></p>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h3 class="font-medium text-gray-800 mb-2">Option 3: Delete Your Account</h3>
+                <p class="mb-2">When you're logged in to our application, you can:</p>
+                <ol class="list-decimal pl-5 space-y-1">
+                    <li>Go to Account Settings</li>
+                    <li>Click "Delete My Account"</li>
+                    <li>Confirm your choice</li>
+                </ol>
+                <p class="mt-2">This will permanently delete all your data from our systems.</p>
+            </div>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Data Retention Period</h2>
+            <p>After receiving your data deletion request, we will:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>Process your request within 30 days</li>
+                <li>Delete all your personal information from our active databases</li>
+                <li>Ensure your data is also removed from our backups during our regular backup rotation (maximum 90 days)</li>
+            </ul>
+            <p class="mt-2">Some information may be retained in anonymized form for analytics purposes, or as required by law, but will not be linked to your identity.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Facebook User Data Deletion Callback</h2>
+            <p>In accordance with Facebook's Platform Policy, our application implements the User Data Deletion Callback API. When you delete our app from your Facebook account, we automatically receive a notification to delete your associated data.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Contact Us</h2>
+            <p>If you have any questions about data deletion or privacy concerns, please contact us at <a href="mailto:[Your Contact Email]" class="text-blue-600 hover:underline">[Your Contact Email]</a>.</p>
+        </section>
+    </div>
+</div>
+{% endblock %} 

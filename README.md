@@ -77,6 +77,8 @@ To use this application, you need to:
    - pages_read_engagement
    - pages_show_list
 4. Set up a Valid OAuth Redirect URI in your Facebook App: `http://localhost:8000/callback`
+5. Add your Privacy Policy URL (`https://your-app-url.com/privacy-policy`) and Terms of Service URL (`https://your-app-url.com/terms-of-service`) in the App Settings > Basic section
+6. Add your Data Deletion URL (`https://your-app-url.com/data-deletion`) in the App Settings > Advanced section under "Data Deletion URL"
 
 ## How to Use
 

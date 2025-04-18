@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}Privacy Policy - Facebook Post Scheduler{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Privacy Policy</h1>
+    
+    <div class="space-y-6 text-gray-700">
+        <p>Last Updated: {{ now.strftime('%B %d, %Y') }}</p>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Introduction</h2>
+            <p>Welcome to Facebook Post Scheduler. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.</p>
+            <p>We respect your privacy and are committed to protecting personally identifiable information you may provide us through our website. We have adopted this privacy policy to explain what information may be collected, how we use this information, and under what circumstances we may disclose the information to third parties.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Information We Collect</h2>
+            <p>When you use our application, we may collect the following information:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>Facebook account information (through Facebook Login)</li>
+                <li>Access tokens for Facebook Pages you manage</li>
+                <li>Content of posts you schedule through our service</li>
+                <li>Images you upload for scheduled posts</li>
+                <li>Your email address (if you provide permission through Facebook Login)</li>
+                <li>Usage information such as how you interact with our application</li>
+            </ul>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">How We Use Your Information</h2>
+            <p>We use the information we collect for various purposes, including:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>To provide and maintain our service</li>
+                <li>To schedule posts to your Facebook Pages</li>
+                <li>To authenticate you with Facebook</li>
+                <li>To communicate with you regarding your account or posts</li>
+                <li>To improve our service and user experience</li>
+            </ul>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Data Retention</h2>
+            <p>We will retain your information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Data Security</h2>
+            <p>We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Your Data Protection Rights</h2>
+            <p>You have the following data protection rights:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>The right to access, update or delete the information we have on you</li>
+                <li>The right of rectification - the right to have your information corrected if it is inaccurate or incomplete</li>
+                <li>The right to object to our processing of your personal data</li>
+                <li>The right to request that we restrict the processing of your personal information</li>
+                <li>The right to data portability - the right to receive a copy of your personal data in a structured, machine-readable format</li>
+            </ul>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Facebook Data</h2>
+            <p>Our application uses Facebook Login and accesses Facebook data through the Facebook Graph API. We only request permissions that are necessary for the functioning of our application. You can revoke these permissions at any time through your Facebook settings.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us at [Your Contact Email].</p>
+        </section>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}Terms of Service - Facebook Post Scheduler{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Terms of Service</h1>
+    
+    <div class="space-y-6 text-gray-700">
+        <p>Last Updated: {{ now.strftime('%B %d, %Y') }}</p>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">1. Acceptance of Terms</h2>
+            <p>By accessing or using Facebook Post Scheduler, you agree to be bound by these Terms of Service. If you do not agree to all the terms and conditions, then you may not access the service.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">2. Description of Service</h2>
+            <p>Facebook Post Scheduler is a web application that allows users to schedule posts to their Facebook Pages. The service requires authentication through Facebook and uses the Facebook Graph API to schedule and publish posts.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">3. Facebook Rules and Policies</h2>
+            <p>By using our service, you agree to comply with Facebook's Terms of Service, Community Standards, and Platform Policies. Our service does not allow for the scheduling of content that violates Facebook's policies, including but not limited to:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>Content that is illegal, misleading, discriminatory, or fraudulent</li>
+                <li>Content that infringes on others' intellectual property rights</li>
+                <li>Content that contains spam, unauthorized commercial communications, or malware</li>
+                <li>Content that violates the privacy or security of others</li>
+            </ul>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">4. User Accounts</h2>
+            <p>To use our service, you must authenticate with your Facebook account. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account. You agree to immediately notify us of any unauthorized use of your account or any other breach of security.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">5. User Content</h2>
+            <p>You retain ownership of the content you post through our service. By using our service to schedule posts, you grant us a non-exclusive, worldwide, royalty-free license to use, store, and process your content for the sole purpose of providing and improving our service.</p>
+            <p>You are solely responsible for the content you post through our service. You affirm that you have all necessary rights and permissions to share and publish this content on Facebook.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">6. Limitations of Liability</h2>
+            <p>Our service is provided "as is" without warranties of any kind, either express or implied. We do not guarantee that:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>The service will be uninterrupted or error-free</li>
+                <li>Posts will be scheduled or published exactly at the requested time</li>
+                <li>The service will be compatible with changes to Facebook's API or policies</li>
+            </ul>
+            <p>We shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of or inability to use the service.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">7. Termination</h2>
+            <p>We may terminate or suspend your access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms of Service.</p>
+            <p>You may terminate your use of the service at any time by disconnecting your Facebook account from our application.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">8. Changes to Terms</h2>
+            <p>We reserve the right to modify or replace these Terms of Service at any time. We will provide notice of any changes by posting the new Terms of Service on this page and updating the "Last Updated" date.</p>
+            <p>Your continued use of the service after any such changes constitutes your acceptance of the new Terms of Service.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">9. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.</p>
+        </section>
+        
+        <section class="mb-5">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">10. Contact Us</h2>
+            <p>If you have any questions about these Terms of Service, please contact us at [Your Contact Email].</p>
+        </section>
+    </div>
+</div>
+{% endblock %} 
