@@ -3,6 +3,8 @@ from flask import (
     url_for, flash
 )
 from functools import wraps
+from app.helpers.post_utils import update_post_statuses
+from app.models.scheduled_post import ScheduledPost
 
 main_bp = Blueprint('main', __name__)
 
@@ -30,8 +32,30 @@ def index():
 @login_required
 def dashboard():
     """Dashboard - requires login"""
+    # Ensure user_id is available
+    user_id = session.get('user_id')
+    if not user_id:
+        flash("Session incomplete. Please log out and log back in.", "error")
+        return redirect(url_for('auth.logout'))
+        
+    # Update post statuses
+    updated_count = update_post_statuses()
+    if updated_count > 0:
+        message = f"{updated_count} posts have been marked as published"
+        flash(message, "success")
+    
+    # Get the user's pages
     pages = session.get('pages', [])
+    
+    # Get recent posts (limit to 6 - same as one page of full list)
+    recent_posts = ScheduledPost.query.filter_by(
+        user_id=user_id
+    ).order_by(
+        ScheduledPost.scheduled_time.desc()
+    ).limit(6).all()
+    
     return render_template(
         'dashboard.html',
-        pages=pages
+        pages=pages,
+        recent_posts=recent_posts
     ) 

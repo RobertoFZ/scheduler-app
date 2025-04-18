@@ -48,6 +48,15 @@ def get_long_lived_token(short_lived_token):
     }
 
 
+def get_user_info(access_token):
+    """Get the user information including user ID and name"""
+    url = "https://graph.facebook.com/v19.0/me"
+    params = {"access_token": access_token}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
+
+
 def get_user_pages(access_token):
     """Get pages that user has access to"""
     url = "https://graph.facebook.com/v19.0/me/accounts"

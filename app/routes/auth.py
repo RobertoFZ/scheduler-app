@@ -3,7 +3,7 @@ from flask import (
     url_for, flash, current_app
 )
 from app.helpers.auth import (
-    exchange_token, get_long_lived_token, get_user_pages
+    exchange_token, get_long_lived_token, get_user_pages, get_user_info
 )
 
 auth_bp = Blueprint('auth', __name__)
@@ -40,14 +40,20 @@ def callback():
         
         # Exchange short-lived token for long-lived token
         token_data = get_long_lived_token(short_lived_token)
+        access_token = token_data['access_token']
         
-        # Store token in session
+        # Get user information
+        user_info = get_user_info(access_token)
+        
+        # Store token and user info in session
         session.permanent = True
-        session['access_token'] = token_data['access_token']
+        session['access_token'] = access_token
         session['expires_at'] = token_data['expires_at']
+        session['user_id'] = user_info['id']
+        session['user_name'] = user_info.get('name', '')
         
         # Get pages user has access to
-        pages = get_user_pages(token_data['access_token'])
+        pages = get_user_pages(access_token)
         if not pages:
             flash(
                 "No Facebook Pages found. "
