@@ -10,7 +10,6 @@ migrate = Migrate()
 def create_app(test_config=None):
     """Create and configure the Flask application"""
     app = Flask(__name__, instance_relative_config=True)
-    print(os.getenv("FACEBOOK_APP_ID"))
     # Default configuration
     app.config.from_mapping(
         SECRET_KEY=os.getenv("SECRET_KEY", "facebook-scheduler-secret-key"),

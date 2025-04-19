@@ -22,28 +22,6 @@ services:
       - db
     restart: unless-stopped
 
-  scheduler:
-    build: .
-    command: python scheduler.py --loop --interval=900
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/facebook_scheduler
-      - SECRET_KEY=${SECRET_KEY:-facebook-scheduler-secret-key}
-      - APP_ID=${FACEBOOK_APP_ID}
-      - APP_SECRET=${FACEBOOK_APP_SECRET}
-      - REDIRECT_URI=${FACEBOOK_REDIRECT_URI:-http://localhost:8000/callback}
-      - FB_SCHEDULING_DAYS=${FB_SCHEDULING_DAYS:-30}
-      - FB_SCHEDULING_MINUTES=${FB_SCHEDULING_MINUTES:-10}
-      - FLASK_ENV=development
-      - FLASK_DEBUG=0
-    volumes:
-      - ./uploads:/app/uploads
-      - ./logs:/app/logs
-      - ./:/app  # Mount the entire application directory
-    depends_on:
-      - db
-      - web
-    restart: unless-stopped
-
   db:
     image: postgres:16-alpine
     volumes:
